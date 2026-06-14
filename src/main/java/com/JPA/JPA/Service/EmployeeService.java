@@ -36,4 +36,17 @@ public class EmployeeService {
         EmployeeEntity employeeEntity2 = employeeRepository.save(employeeEntity1);
         return modelMapper.map(employeeEntity2, EmployeeDTO.class);
     }
+
+    public EmployeeDTO update(EmployeeDTO employees, long employeeId) {
+        EmployeeEntity tobeupdate = modelMapper.map(employees,EmployeeEntity.class);
+        tobeupdate.setId(employeeId);
+        EmployeeEntity updated = employeeRepository.save(tobeupdate);
+        return modelMapper.map(updated, EmployeeDTO.class);
+    }
+
+    public void remove(long employeeId) {
+        if(employeeRepository.findById(employeeId).isPresent()){
+            employeeRepository.deleteById(employeeId);
+        }
+    }
 }

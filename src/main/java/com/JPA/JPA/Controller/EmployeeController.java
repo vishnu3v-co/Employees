@@ -28,4 +28,15 @@ public class EmployeeController {
     public EmployeeDTO save(@RequestBody EmployeeDTO employees) {
         return employeeService.save(employees);
     }
+
+    @PutMapping("/{employeeId}")
+    public EmployeeDTO update(@RequestBody EmployeeDTO employees,@PathVariable long  employeeId) {
+        return employeeService.update(employees,employeeId);
+    }
+
+    @DeleteMapping("/{employeeId}")
+    public void delete(@PathVariable long employeeId) {
+        employeeService.remove(employeeId);
+    }
+
 }
